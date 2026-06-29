@@ -1,0 +1,223 @@
+window.GRAPH_DATA = {
+  "generated_at": "2026-06-24T14:00:00+00:00",
+  "root_keys": [
+    "CLIENT-204"
+  ],
+  "blast_count": 7,
+  "nodes": [
+    {
+      "id": "CLIENT-204",
+      "team": "CLIENT",
+      "summary": "Approve final payments API contract",
+      "owner": "Priya Nair",
+      "owner_tz": "Asia/Kolkata",
+      "status": "Awaiting client approval",
+      "dep_type": "client_sign_off",
+      "stale": true,
+      "days_stale": 4.0,
+      "is_root": true,
+      "in_blast": false,
+      "severity": "CRITICAL",
+      "severity_score": 16.5,
+      "days_to_milestone": 6.4,
+      "milestone": "Sprint 14 - Payments GA",
+      "message": "@priya.nair: CLIENT-204 (Approve final payments API contract) has had no activity for 4.0 working day(s) in your timezone (Asia/Kolkata), past the 2-working-day threshold for a client sign off.\n\nWhy it matters: it is blocking 7 downstream ticket(s) across DOC, QA, TEAMA, TEAMB. Dependency chain: CLIENT-204 -> TEAMB-88 -> TEAMA-42. Milestone \"Sprint 14 - Payments GA\" is due in 6 day(s) and is now at risk.\n\nSuggested next step: please confirm whether CLIENT-204 can be actioned today, or point us to who can, so we can unblock DOC, QA, TEAMA, TEAMB before the milestone slips. (Severity: CRITICAL, score 16.5.)"
+    },
+    {
+      "id": "TEAMB-88",
+      "team": "TEAMB",
+      "summary": "Implement payment gateway integration",
+      "owner": "Sofia Ramirez",
+      "owner_tz": "America/Mexico_City",
+      "status": "Blocked",
+      "dep_type": "internal_blocker",
+      "stale": false,
+      "days_stale": 0.9,
+      "is_root": false,
+      "in_blast": true,
+      "severity": null,
+      "severity_score": null,
+      "days_to_milestone": null,
+      "milestone": null,
+      "message": null
+    },
+    {
+      "id": "TEAMA-42",
+      "team": "TEAMA",
+      "summary": "Wire checkout flow to payment gateway",
+      "owner": "Carlos Mendez",
+      "owner_tz": "America/Mexico_City",
+      "status": "Blocked",
+      "dep_type": "internal_blocker",
+      "stale": false,
+      "days_stale": 0.7,
+      "is_root": false,
+      "in_blast": true,
+      "severity": null,
+      "severity_score": null,
+      "days_to_milestone": null,
+      "milestone": null,
+      "message": null
+    },
+    {
+      "id": "TEAMA-43",
+      "team": "TEAMA",
+      "summary": "Checkout UI happy path",
+      "owner": "Carlos Mendez",
+      "owner_tz": "America/Mexico_City",
+      "status": "Blocked",
+      "dep_type": "internal_blocker",
+      "stale": false,
+      "days_stale": 0.8,
+      "is_root": false,
+      "in_blast": true,
+      "severity": null,
+      "severity_score": null,
+      "days_to_milestone": null,
+      "milestone": null,
+      "message": null
+    },
+    {
+      "id": "TEAMA-44",
+      "team": "TEAMA",
+      "summary": "Order confirmation email",
+      "owner": "Carlos Mendez",
+      "owner_tz": "America/Mexico_City",
+      "status": "Blocked",
+      "dep_type": "internal_blocker",
+      "stale": false,
+      "days_stale": 1.0,
+      "is_root": false,
+      "in_blast": true,
+      "severity": null,
+      "severity_score": null,
+      "days_to_milestone": null,
+      "milestone": null,
+      "message": null
+    },
+    {
+      "id": "TEAMB-89",
+      "team": "TEAMB",
+      "summary": "Payment reconciliation job",
+      "owner": "Sofia Ramirez",
+      "owner_tz": "America/Mexico_City",
+      "status": "Blocked",
+      "dep_type": "technical",
+      "stale": false,
+      "days_stale": 1.0,
+      "is_root": false,
+      "in_blast": true,
+      "severity": null,
+      "severity_score": null,
+      "days_to_milestone": null,
+      "milestone": null,
+      "message": null
+    },
+    {
+      "id": "QA-15",
+      "team": "QA",
+      "summary": "E2E checkout test suite",
+      "owner": "Diego Torres",
+      "owner_tz": "America/Mexico_City",
+      "status": "Blocked",
+      "dep_type": "internal_blocker",
+      "stale": false,
+      "days_stale": 1.0,
+      "is_root": false,
+      "in_blast": true,
+      "severity": null,
+      "severity_score": null,
+      "days_to_milestone": null,
+      "milestone": null,
+      "message": null
+    },
+    {
+      "id": "DOC-7",
+      "team": "DOC",
+      "summary": "Payments API documentation",
+      "owner": "Diego Torres",
+      "owner_tz": "America/Mexico_City",
+      "status": "Blocked",
+      "dep_type": "technical",
+      "stale": false,
+      "days_stale": 1.0,
+      "is_root": false,
+      "in_blast": true,
+      "severity": null,
+      "severity_score": null,
+      "days_to_milestone": null,
+      "milestone": null,
+      "message": null
+    },
+    {
+      "id": "TEAMC-10",
+      "team": "TEAMC",
+      "summary": "Refactor logging module",
+      "owner": "Diego Torres",
+      "owner_tz": "America/Mexico_City",
+      "status": "In Progress",
+      "dep_type": "internal_blocker",
+      "stale": false,
+      "days_stale": 0.0,
+      "is_root": false,
+      "in_blast": false,
+      "severity": null,
+      "severity_score": null,
+      "days_to_milestone": null,
+      "milestone": null,
+      "message": null
+    },
+    {
+      "id": "TEAMC-11",
+      "team": "TEAMC",
+      "summary": "Update Grafana dashboards",
+      "owner": "Diego Torres",
+      "owner_tz": "America/Mexico_City",
+      "status": "In Progress",
+      "dep_type": "internal_blocker",
+      "stale": false,
+      "days_stale": 0.0,
+      "is_root": false,
+      "in_blast": false,
+      "severity": null,
+      "severity_score": null,
+      "days_to_milestone": null,
+      "milestone": null,
+      "message": null
+    }
+  ],
+  "edges": [
+    {
+      "from": "CLIENT-204",
+      "to": "TEAMB-88"
+    },
+    {
+      "from": "TEAMB-88",
+      "to": "TEAMA-42"
+    },
+    {
+      "from": "TEAMA-42",
+      "to": "TEAMA-43"
+    },
+    {
+      "from": "TEAMA-42",
+      "to": "TEAMA-44"
+    },
+    {
+      "from": "TEAMB-88",
+      "to": "TEAMB-89"
+    },
+    {
+      "from": "TEAMA-43",
+      "to": "QA-15"
+    },
+    {
+      "from": "TEAMA-44",
+      "to": "QA-15"
+    },
+    {
+      "from": "TEAMB-88",
+      "to": "DOC-7"
+    }
+  ]
+};

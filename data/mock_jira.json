@@ -1,0 +1,20 @@
+{
+  "owners": [
+    {"name": "Priya Nair",     "handle": "priya.nair",     "timezone": "Asia/Kolkata",         "region": "IN"},
+    {"name": "Sofia Ramirez",  "handle": "sofia.ramirez",  "timezone": "America/Mexico_City",  "region": "MX"},
+    {"name": "Carlos Mendez",  "handle": "carlos.mendez",  "timezone": "America/Mexico_City",  "region": "MX"},
+    {"name": "Diego Torres",   "handle": "diego.torres",   "timezone": "America/Mexico_City",  "region": "MX"}
+  ],
+  "tickets": [
+    {"key": "CLIENT-204", "summary": "Approve final payments API contract", "status": "Awaiting client approval", "dep_type": "client_sign_off",  "owner": "priya.nair",    "last_activity": "2026-06-18T12:30:00Z", "blocked_by": [],                       "milestone": "Sprint 14 - Payments GA", "milestone_due": "2026-06-30T23:59:00Z"},
+    {"key": "TEAMB-88",   "summary": "Implement payment gateway integration", "status": "Blocked",              "dep_type": "internal_blocker", "owner": "sofia.ramirez", "last_activity": "2026-06-23T16:00:00Z", "blocked_by": ["CLIENT-204"]},
+    {"key": "TEAMA-42",   "summary": "Wire checkout flow to payment gateway",  "status": "Blocked",              "dep_type": "internal_blocker", "owner": "carlos.mendez", "last_activity": "2026-06-23T18:00:00Z", "blocked_by": ["TEAMB-88"]},
+    {"key": "TEAMA-43",   "summary": "Checkout UI happy path",                 "status": "Blocked",              "dep_type": "internal_blocker", "owner": "carlos.mendez", "last_activity": "2026-06-23T17:00:00Z", "blocked_by": ["TEAMA-42"]},
+    {"key": "TEAMA-44",   "summary": "Order confirmation email",               "status": "Blocked",              "dep_type": "internal_blocker", "owner": "carlos.mendez", "last_activity": "2026-06-23T15:00:00Z", "blocked_by": ["TEAMA-42"]},
+    {"key": "TEAMB-89",   "summary": "Payment reconciliation job",             "status": "Blocked",              "dep_type": "technical",        "owner": "sofia.ramirez", "last_activity": "2026-06-23T14:00:00Z", "blocked_by": ["TEAMB-88"]},
+    {"key": "QA-15",      "summary": "E2E checkout test suite",                "status": "Blocked",              "dep_type": "internal_blocker", "owner": "diego.torres",  "last_activity": "2026-06-23T13:00:00Z", "blocked_by": ["TEAMA-43", "TEAMA-44"]},
+    {"key": "DOC-7",      "summary": "Payments API documentation",             "status": "Blocked",              "dep_type": "technical",        "owner": "diego.torres",  "last_activity": "2026-06-23T12:00:00Z", "blocked_by": ["TEAMB-88"]},
+    {"key": "TEAMC-10",   "summary": "Refactor logging module",                "status": "In Progress",          "dep_type": "internal_blocker", "owner": "diego.torres",  "last_activity": "2026-06-24T09:00:00Z", "blocked_by": []},
+    {"key": "TEAMC-11",   "summary": "Update Grafana dashboards",              "status": "In Progress",          "dep_type": "internal_blocker", "owner": "diego.torres",  "last_activity": "2026-06-24T08:00:00Z", "blocked_by": []}
+  ]
+}
