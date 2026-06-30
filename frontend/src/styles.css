@@ -1,0 +1,121 @@
+:root {
+  --bg: #0b1220;
+  --panel: #111a2e;
+  --panel-2: #0e1626;
+  --line: #2a3650;
+  --text: #e6edf7;
+  --muted: #8aa0c0;
+  --red: #ff4d4f;
+  --amber: #ff9f43;
+  --green: #2dd4a7;
+  --blue: #4c8dff;
+}
+
+* { box-sizing: border-box; }
+html { color-scheme: dark; }
+html, body, #root { height: 100%; }
+body {
+  margin: 0; background: var(--bg); color: var(--text);
+  font: 14px/1.5 "Segoe UI", system-ui, -apple-system, sans-serif;
+}
+
+/* themed scrollbars so they belong to the dark UI */
+* { scrollbar-width: thin; scrollbar-color: #2a3650 transparent; }
+::-webkit-scrollbar { width: 10px; height: 10px; }
+::-webkit-scrollbar-track { background: transparent; }
+::-webkit-scrollbar-thumb { background: #2a3650; border-radius: 8px; border: 2px solid var(--panel-2); }
+::-webkit-scrollbar-thumb:hover { background: #3a4a6a; }
+
+.app { height: 100vh; display: flex; flex-direction: column; }
+
+header {
+  padding: 16px 24px; border-bottom: 1px solid var(--line);
+  display: flex; align-items: baseline; gap: 16px; flex-wrap: wrap;
+}
+header h1 { font-size: 18px; margin: 0; font-weight: 650; }
+header .scan { color: var(--muted); font-size: 13px; }
+.legend { display: flex; gap: 16px; margin-left: auto; font-size: 12px; color: var(--muted); }
+.legend span { display: inline-flex; align-items: center; gap: 6px; }
+.dot { width: 11px; height: 11px; border-radius: 3px; display: inline-block; }
+
+.banner {
+  margin: 14px 24px 4px; padding: 10px 16px; border-radius: 10px;
+  background: rgba(255, 77, 79, .08); border: 1px solid rgba(255, 77, 79, .35);
+  color: #ffd0d1; font-size: 13.5px;
+}
+.banner.ok { background: rgba(45, 212, 167, .08); border-color: rgba(45, 212, 167, .35); color: #bdeedd; }
+.banner b { color: #fff; }
+
+.wrap { flex: 1; min-height: 0; display: flex; }
+.canvas { flex: 1; min-width: 0; position: relative; }
+.react-flow { width: 100%; height: 100%; background: var(--bg); }
+
+/* --- ticket nodes --- */
+.react-flow__node-ticket { background: transparent; border: none; padding: 0; }
+.ticket {
+  width: 100%; height: 100%; background: var(--panel); border: 1.5px solid var(--line);
+  border-radius: 10px; padding: 9px 12px; color: var(--text); cursor: pointer;
+  transition: filter .15s; overflow: hidden;
+}
+.ticket:hover { filter: brightness(1.2); }
+.ticket-key { font-weight: 650; font-size: 12.5px; }
+.ticket-sum {
+  color: var(--muted); font-size: 10.5px; margin-top: 2px;
+  white-space: nowrap; overflow: hidden; text-overflow: ellipsis;
+}
+.ticket-meta { color: var(--muted); font-size: 10px; margin-top: 3px; }
+.ticket.healthy { border-color: var(--green); background: #0f231b; }
+.ticket.blast { border-color: var(--amber); background: #281a0e; }
+.ticket.root {
+  border-color: var(--red); background: #2a0e12; border-width: 2.5px;
+  animation: pulse 1.8s ease-in-out infinite;
+}
+.warn { color: var(--red); }
+.react-flow__node.selected .ticket { outline: 2px solid var(--blue); outline-offset: 2px; }
+@keyframes pulse {
+  0%, 100% { box-shadow: 0 0 6px rgba(255, 77, 79, .35); }
+  50%      { box-shadow: 0 0 18px rgba(255, 77, 79, .85); }
+}
+
+/* hide connection handles (read-only graph) but keep them as edge anchors */
+.react-flow__handle { opacity: 0; width: 1px; height: 1px; min-width: 0; min-height: 0; border: 0; }
+
+/* --- edges --- */
+.react-flow__edge-path { stroke: var(--line); stroke-width: 1.6; }
+.react-flow__edge.edge-hot .react-flow__edge-path { stroke: var(--amber); stroke-width: 2.2; }
+.react-flow__edge.edge-root .react-flow__edge-path { stroke: var(--red); stroke-width: 2.6; }
+
+/* --- React Flow controls themed dark --- */
+.react-flow__controls { box-shadow: 0 2px 10px rgba(0, 0, 0, .4); }
+.react-flow__controls-button {
+  background: var(--panel); border-bottom: 1px solid var(--line);
+  color: var(--text); fill: var(--text);
+}
+.react-flow__controls-button:hover { background: #1a2742; }
+.react-flow__minimap { border-radius: 8px; border: 1px solid var(--line); }
+
+/* --- side panel --- */
+.side {
+  width: 360px; flex-shrink: 0; min-height: 0; border-left: 1px solid var(--line);
+  background: var(--panel-2); padding: 18px 18px 28px; overflow-y: auto;
+}
+.side h2 { font-size: 13px; text-transform: uppercase; letter-spacing: .06em; color: var(--muted); margin: 0 0 10px; }
+.kv { margin: 4px 0; font-size: 13px; }
+.kv b { color: var(--muted); font-weight: 500; display: inline-block; min-width: 92px; }
+.muted { color: var(--muted); }
+.hint { color: var(--muted); font-size: 12px; margin-top: 8px; }
+.badge { display: inline-block; padding: 2px 9px; border-radius: 20px; font-size: 11px; font-weight: 650; letter-spacing: .03em; }
+.badge.CRITICAL { background: rgba(255, 77, 79, .18); color: #ff8587; border: 1px solid var(--red); }
+.badge.HIGH { background: rgba(255, 159, 67, .18); color: var(--amber); border: 1px solid var(--amber); }
+.badge.MEDIUM { background: rgba(76, 141, 255, .18); color: var(--blue); border: 1px solid var(--blue); }
+.badge.LOW { background: rgba(45, 212, 167, .15); color: var(--green); border: 1px solid var(--green); }
+.msg {
+  margin-top: 14px; background: var(--panel); border: 1px solid var(--line);
+  border-radius: 10px; padding: 14px; font-size: 13px; white-space: pre-wrap; color: #dbe6f6;
+}
+.msg .tag { color: var(--blue); font-size: 11px; text-transform: uppercase; letter-spacing: .05em; margin-bottom: 8px; display: block; }
+button.approve {
+  margin-top: 12px; width: 100%; padding: 10px; border: 0; border-radius: 8px;
+  background: var(--green); color: #06281e; font-weight: 700; cursor: pointer; font-size: 13.5px;
+}
+button.approve:active { transform: translateY(1px); }

@@ -1,4 +1,4 @@
-window.GRAPH_DATA = {
+{
   "generated_at": "2026-06-24T14:00:00+00:00",
   "root_keys": [
     "CLIENT-204"
@@ -220,4 +220,4 @@ window.GRAPH_DATA = {
       "to": "DOC-7"
     }
   ]
-};
+}

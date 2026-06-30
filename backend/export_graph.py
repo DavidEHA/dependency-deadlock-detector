@@ -1,10 +1,9 @@
-"""Export the agent's analysis to a static graph for the demo visualization.
+"""Export the agent's analysis as JSON for the frontend visualization.
 
-Produces viz/graph_data.js (`window.GRAPH_DATA = {...}`). Open viz/index.html
-in a browser afterwards. The visualization is read-only and demo-only: it
-consumes the agent's JSON and recomputes nothing itself.
+Writes ../frontend/src/data/graph_data.json — the React app imports it. The
+visualization is read-only: it consumes this JSON and recomputes nothing.
 
-Run from the repo root:  python export_graph.py
+Run from the backend/ directory:  python export_graph.py
 """
 from __future__ import annotations
 
@@ -12,14 +11,15 @@ import json
 from pathlib import Path
 
 from deadlock_detector.drafter.claude_foundry import ClaudeFoundryDrafter
-from deadlock_detector.graph import DependencyGraph
 from deadlock_detector.ingest.jira_mock import MockJiraIngestor
 from deadlock_detector.notifier.console import ConsoleNotifier
 from deadlock_detector.pipeline import Pipeline
 from deadlock_detector.staleness import assess
 from run_demo import DATA, NOW
 
-OUT = Path(__file__).parent / "viz" / "graph_data.js"
+DATA_OUT = (
+    Path(__file__).resolve().parent.parent / "frontend" / "src" / "data" / "graph_data.json"
+)
 
 
 def build() -> None:
@@ -73,12 +73,10 @@ def build() -> None:
         "edges": edges,
     }
 
-    OUT.parent.mkdir(parents=True, exist_ok=True)
-    OUT.write_text(
-        "window.GRAPH_DATA = " + json.dumps(data, indent=2) + ";\n", encoding="utf-8"
-    )
+    DATA_OUT.parent.mkdir(parents=True, exist_ok=True)
+    DATA_OUT.write_text(json.dumps(data, indent=2) + "\n", encoding="utf-8")
     print(
-        f"Wrote {OUT}  ({len(nodes)} nodes, {len(edges)} edges, "
+        f"Wrote {DATA_OUT}\n  ({len(nodes)} nodes, {len(edges)} edges, "
         f"{len(roots)} root(s), {len(blast_union)} in blast radius)."
     )
 
