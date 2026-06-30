@@ -2,8 +2,8 @@
 
 "Claude via Azure" means Microsoft Foundry, NOT Azure OpenAI (that's GPT-only).
 Claude is GA on Foundry via serverless deployment (regions East US2 /
-Sweden Central) — no separate access-request gate. We use the dedicated
-`AnthropicFoundry` client, not a generic base_url override.
+Sweden Central). We use the dedicated `AnthropicFoundry` client, configured
+with either the Foundry resource name or the full base URL.
 
 Degrades gracefully: if the `anthropic` SDK or the Foundry credentials are
 missing, it falls back to the template drafter so the demo always runs.
@@ -25,6 +25,7 @@ _SYSTEM = (
 
 class ClaudeFoundryDrafter:
     name = "claude-foundry"
+    label = "Claude on Azure Foundry"
 
     def __init__(self, model: str | None = None, fallback: Drafter | None = None):
         # Haiku 4.5 is the cost-optimal choice for short drafting (team decision).
@@ -32,6 +33,7 @@ class ClaudeFoundryDrafter:
         self.model = model or os.getenv("FOUNDRY_CLAUDE_MODEL", "claude-haiku-4-5")
         self.fallback: Drafter = fallback or TemplateDrafter()
         self._client = self._build_client()
+        self.is_live = self._client is not None
 
     def _build_client(self):
         try:
@@ -39,10 +41,13 @@ class ClaudeFoundryDrafter:
         except Exception:
             return None
         api_key = os.getenv("AZURE_FOUNDRY_API_KEY")
-        resource = os.getenv("AZURE_FOUNDRY_RESOURCE")
-        if not (api_key and resource):
+        resource = os.getenv("AZURE_FOUNDRY_RESOURCE")   # resource NAME, e.g. my-foundry-res
+        base_url = os.getenv("AZURE_FOUNDRY_BASE_URL")   # alternative to resource name
+        if not api_key or not (resource or base_url):
             return None
         try:
+            if base_url:
+                return AnthropicFoundry(api_key=api_key, base_url=base_url)
             return AnthropicFoundry(api_key=api_key, resource=resource)
         except Exception:
             return None

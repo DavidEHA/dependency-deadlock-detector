@@ -24,6 +24,7 @@ export interface GraphEdge {
 
 export interface GraphData {
   generated_at: string;
+  drafter_label: string;
   root_keys: string[];
   blast_count: number;
   nodes: GraphNode[];

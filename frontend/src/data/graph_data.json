@@ -1,5 +1,6 @@
 {
   "generated_at": "2026-06-24T14:00:00+00:00",
+  "drafter_label": "Gemini (free tier)",
   "root_keys": [
     "CLIENT-204"
   ],
@@ -21,7 +22,7 @@
       "severity_score": 16.5,
       "days_to_milestone": 6.4,
       "milestone": "Sprint 14 - Payments GA",
-      "message": "@priya.nair: CLIENT-204 (Approve final payments API contract) has had no activity for 4.0 working day(s) in your timezone (Asia/Kolkata), past the 2-working-day threshold for a client sign off.\n\nWhy it matters: it is blocking 7 downstream ticket(s) across DOC, QA, TEAMA, TEAMB. Dependency chain: CLIENT-204 -> TEAMB-88 -> TEAMA-42. Milestone \"Sprint 14 - Payments GA\" is due in 6 day(s) and is now at risk.\n\nSuggested next step: please confirm whether CLIENT-204 can be actioned today, or point us to who can, so we can unblock DOC, QA, TEAMA, TEAMB before the milestone slips. (Severity: CRITICAL, score 16.5.)"
+      "message": "@priya.nair - Gently nudging on CLIENT-204 (Approve final payments API contract), which has been awaiting client approval for 4 working days.\n\nThis is a critical dependency, blocking 7 downstream tickets across DOC, QA, TEAMA, and TEAMB. Prompt resolution is key as it impacts our 'Sprint 14 - Payments GA' milestone, due in 6 days.\n\nCould you please provide an update on the client's progress or advise on any actions needed from our side to help accelerate their sign-off? Thanks!"
     },
     {
       "id": "TEAMB-88",

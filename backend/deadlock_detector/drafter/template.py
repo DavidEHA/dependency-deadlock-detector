@@ -9,6 +9,8 @@ from .base import EscalationContext
 
 class TemplateDrafter:
     name = "template"
+    is_live = False
+    label = "Template (rule-based, $0)"
 
     def draft(self, ctx: EscalationContext) -> str:
         t = ctx.stale_ticket

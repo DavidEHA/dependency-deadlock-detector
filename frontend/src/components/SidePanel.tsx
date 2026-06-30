@@ -34,10 +34,7 @@ export default function SidePanel({ node }: { node: GraphNode | null }) {
               {node.milestone} · in {node.days_to_milestone}d
             </div>
           )}
-          <div className="msg">
-            <span className="tag">✦ Drafted by Claude (Azure Foundry)</span>
-            {node.message}
-          </div>
+          <div className="msg">{node.message}</div>
           <button className="approve">Approve &amp; send →</button>
         </>
       ) : node.in_blast ? (

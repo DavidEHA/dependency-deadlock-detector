@@ -2,12 +2,19 @@
 # zoneinfo needs the IANA timezone database, which Windows does not ship.
 tzdata; platform_system == "Windows"
 
+# --- Reads backend/.env (Foundry / Jira credentials) automatically ---
+python-dotenv>=1.0
+
 # --- Optional: real per-region holiday calendars (falls back to none if absent) ---
 holidays>=0.50
 
-# --- Optional: Claude drafting via Azure AI Foundry (falls back to template if absent) ---
-# Needs a recent anthropic SDK that includes the AnthropicFoundry client.
+# --- Optional: Claude drafting via Azure AI Foundry ---
+# Needs an anthropic SDK that includes the AnthropicFoundry client; run
+# `pip install -U anthropic` if the import fails. Falls back to template if absent.
 anthropic>=0.69
+
+# --- Optional: free drafting via Google Gemini (AI Studio free tier) ---
+google-genai>=1.0
 
 # --- Dev ---
 pytest>=8.0

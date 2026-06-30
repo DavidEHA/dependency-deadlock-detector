@@ -10,7 +10,7 @@ from __future__ import annotations
 import json
 from pathlib import Path
 
-from deadlock_detector.drafter.claude_foundry import ClaudeFoundryDrafter
+from deadlock_detector.drafter import select_drafter
 from deadlock_detector.ingest.jira_mock import MockJiraIngestor
 from deadlock_detector.notifier.console import ConsoleNotifier
 from deadlock_detector.pipeline import Pipeline
@@ -26,7 +26,8 @@ def build() -> None:
     ingestor = MockJiraIngestor(DATA)
     tickets = ingestor.fetch()
 
-    escalations = Pipeline(ingestor, ClaudeFoundryDrafter(), ConsoleNotifier()).run(
+    drafter = select_drafter()
+    escalations = Pipeline(ingestor, drafter, ConsoleNotifier()).run(
         now=NOW, notify=False
     )
     roots = {e.context.stale_ticket.key: e for e in escalations}
@@ -67,6 +68,7 @@ def build() -> None:
     edges = [{"from": u, "to": t.key} for t in tickets for u in t.blocked_by]
     data = {
         "generated_at": NOW.isoformat(),
+        "drafter_label": drafter.label,
         "root_keys": list(roots),
         "blast_count": len(blast_union),
         "nodes": nodes,

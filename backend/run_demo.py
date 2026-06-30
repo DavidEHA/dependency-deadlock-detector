@@ -4,14 +4,23 @@ Reproduces the slide's flow:
   silent ticket (4 days) -> 3-node chain stalled -> 7 tickets blocked
   -> sprint at risk -> escalation drafted -> sprint saved.
 
-Run from the repo root:  python run_demo.py
+Run from the backend/ directory:  python run_demo.py
 """
 from __future__ import annotations
 
 from datetime import datetime, timezone
 from pathlib import Path
 
-from deadlock_detector.drafter.claude_foundry import ClaudeFoundryDrafter
+# Load backend/.env (Foundry/Jira creds) if present. Optional dependency — the
+# demo works without it, falling back to the template drafter.
+try:
+    from dotenv import load_dotenv
+
+    load_dotenv(Path(__file__).parent / ".env")
+except Exception:
+    pass
+
+from deadlock_detector.drafter import select_drafter
 from deadlock_detector.ingest.jira_mock import MockJiraIngestor
 from deadlock_detector.notifier.console import ConsoleNotifier
 from deadlock_detector.pipeline import Pipeline
@@ -23,14 +32,13 @@ DATA = Path(__file__).parent / "data" / "mock_jira.json"
 
 def main() -> None:
     ingestor = MockJiraIngestor(DATA)
-    drafter = ClaudeFoundryDrafter()        # falls back to template without creds
+    drafter = select_drafter()              # Foundry -> Gemini -> template
     notifier = ConsoleNotifier()
     pipeline = Pipeline(ingestor, drafter, notifier)
 
-    backend = "Claude on Azure Foundry" if drafter._client else "template fallback (no Foundry creds)"
     print("\nDependency Deadlock Detector - demo")
     print(f"  scan time (UTC): {NOW.isoformat()}")
-    print(f"  drafter backend: {drafter.name}  [{backend}]")
+    print(f"  drafter backend: {drafter.label}")
 
     escalations = pipeline.run(now=NOW)
 
